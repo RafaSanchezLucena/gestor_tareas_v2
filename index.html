@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prácticas</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+
+<body>
+  <header>
+    <div class="menu">
+      <div class="menu__logo">
+        <h1>Gestión</h1>
+      </div>
+      <div class="menu__enlaces">
+        <a class="enlace" href="#">Citas</a>
+        <a class="enlace" href="#">Tareas</a>
+        <a class="enlace" href="#">Recordatorios</a>
+      </div>
+    </div>
+  </header>
+  <div class="contenedor__principal">
+    <div class="plantilla">
+      <div class="contenedor__titulo">
+        <p class="titulo">Nueva cita</p>
+      </div>
+      <div class="contenedor__texto">
+        <label class="texto" for="">De:</label>
+        <input class="campo1" type="text" autofocus placeholder="Introduce texto" />
+        <label class="texto" for="">Para:</label>
+        <select class="lista" name="lista">
+          <option class="opcion" value="Toni">Toni</option>
+          <option class="opcion" value="Quico">Quico</option>
+          <option class="opcion" value="Enrique">Enrique</option>
+          <option class="opcion" value="Maria Luisa">Mª Luisa</option>
+          <option class="opcion" value="Carlos">Carlos</option>
+          <option class="opcion" value="Amparo">Amparo</option>
+        </select>
+        <label class="texto" for="">Acerca de...</label>
+        <textarea name="text-area" class="text__area" cols="40" rows="4"></textarea>
+        <div class="contenedor__checkbox">
+          <label class="texto" for="presencial"><input id="presencial" name="tipo" type="radio" />
+            Presencial</label>
+          <label class="texto" for="telefono"><input id="telefono" name="tipo" type="radio" /> Por
+            teléfono</label>
+        </div>
+        <label for="">Teléfono <input class="campo2" type="text" placeholder="Número" /></label>
+        <div class="contenedor__botones">
+          <input id="nueva" class="boton" type="button" value="Nueva" />
+          <input id="limpiar" class="boton" type="button" value="Limpiar" />
+        </div>
+      </div>
+    </div>
+    <div id="dragArea" class="contenedor__notas"></div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"
+    integrity="sha512-Eezs+g9Lq4TCCq0wae01s9PuNWzHYoCMkE97e2qdkYthpI0pzC3UGB03lgEHn2XM85hDOUF6qgqqszs+iXU4UA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="/main.js"></script>
+</body>
+
+</html>
