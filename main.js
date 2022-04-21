@@ -17,7 +17,7 @@ const data = [];
 const cargarInicial = () => {
   const datos = JSON.parse(localStorage.getItem("notas"));
   if (datos != undefined) { // Comprueba si el localStorage esta vacío.
-    const cita = datos.map((elemento) => /*html*/ `<div class="nota">
+    const cita = datos.map((elemento, index) => /*html*/ `<div class="nota">
           <p class="parrafo"><strong>Nombre: </strong>${elemento.solicitante}</p>
           <p class="parrafo"><strong>Cita con: </strong>${elemento.destinatario}</p>
           <p class="parrafo"><strong>Acerca de: </strong>${elemento.tema}</p>
@@ -25,7 +25,7 @@ const cargarInicial = () => {
           <p class="parrafo"><strong>Por teléfono: </strong>${elemento.telefono}</p>
           <p class="parrafo"><strong>Nº teléfono: </strong>${elemento.numero}</p>
           <div class="contenedor__boton">
-            <button onclick="cerrarNota(${elemento.indice})" class="boton__cerrar">x</button>
+            <button onclick="cerrarNota(${index})" class="boton__cerrar">x</button>
           </div>
         </div>`);
     contenedor.insertAdjacentHTML("beforeend", cita);
@@ -57,10 +57,8 @@ cbox2.addEventListener("change", () => {
 
 // Añade elementos nuevos (notas) en el array e inmediatamente después llama a la función "cargarNota"
 // para pintar en pantalla los datos del array.
-var indice = 0;
 const nuevaNota = () => {
   let nota = {
-    indice,
     solicitante: campo1.value,
     destinatario: lista.value,
     tema: textoArea.value,
@@ -68,14 +66,12 @@ const nuevaNota = () => {
     telefono: cbox2.value,
     numero: campo2.value,
   };
-  indice++;
   data.push(nota);
   cargarNota();
 };
 
 const cerrarNota = (valorIndice) => {
-  let index = data.findIndex((element) => element.indice === valorIndice);
-  data.splice(index, 1);
+  data.splice(valorIndice, 1);
   cargarNota();
 };
 
@@ -85,7 +81,7 @@ const cargarNota = () => {
   contenedor.innerHTML = " ";
   localStorage.setItem("notas", JSON.stringify(data));
   const datos = JSON.parse(localStorage.getItem("notas"));
-  const cita = datos.map((elemento) => /*html*/ `<div class="nota">
+  const cita = datos.map((elemento, index) => /*html*/ `<div class="nota">
           <p class="parrafo"><strong>Nombre: </strong>${elemento.solicitante}</p>
           <p class="parrafo"><strong>Cita con: </strong>${elemento.destinatario}</p>
           <p class="parrafo"><strong>Acerca de: </strong>${elemento.tema}</p>
@@ -93,7 +89,7 @@ const cargarNota = () => {
           <p class="parrafo"><strong>Por teléfono: </strong>${elemento.telefono}</p>
           <p class="parrafo"><strong>Nº teléfono: </strong>${elemento.numero}</p>
           <div class="contenedor__boton">
-            <button onclick="cerrarNota(${elemento.indice})" class="boton__cerrar">x</button>
+            <button onclick="cerrarNota(${index})" class="boton__cerrar">x</button>
           </div>
         </div>`);
   contenedor.insertAdjacentHTML("beforeend", cita);
