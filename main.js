@@ -11,12 +11,12 @@ const textoArea = document.querySelector(".text__area");
 const botonCerrar = document.querySelector(".boton__cerrar");
 
 
-const data = [];
+var data = [];
 
-// Esta función se ejecuta inmediatamente al abrir el navegador y carga los datos del loscalStorage.
+// Esta función se ejecuta al iniciar la aplicación y carga los datos del loscalStorage.
 const cargarInicial = () => {
   const datos = JSON.parse(localStorage.getItem("notas"));
-  if (datos != undefined) { // Comprueba si el localStorage esta vacío.
+  if (datos != undefined) { // Comprueba si el array contiene datos y los carga.
     const cita = datos.map((elemento, index) => /*html*/ `<div class="nota">
           <p class="parrafo"><strong>Nombre: </strong>${elemento.solicitante}</p>
           <p class="parrafo"><strong>Cita con: </strong>${elemento.destinatario}</p>
@@ -29,10 +29,8 @@ const cargarInicial = () => {
           </div>
         </div>`);
     contenedor.insertAdjacentHTML("beforeend", cita);
-    datos.forEach(elemento => data.push(elemento)); // Carga en el array los datos del localStorage.
-  } else {
-    contenedor.innerHTML = " ";
-  }
+    datos.forEach(elemento => data.push(elemento)); // Añade al array los datos del localStorage.
+  } 
 };
 
 cargarInicial();
@@ -57,7 +55,7 @@ cbox2.addEventListener("change", () => {
 
 // Añade elementos nuevos (notas) en el array e inmediatamente después llama a la función "cargarNota"
 // para pintar en pantalla los datos del array.
-const nuevaNota = () => {
+botonNueva.addEventListener("click", () => {
   let nota = {
     solicitante: campo1.value,
     destinatario: lista.value,
@@ -68,7 +66,7 @@ const nuevaNota = () => {
   };
   data.push(nota);
   cargarNota();
-};
+});
 
 const cerrarNota = (valorIndice) => {
   data.splice(valorIndice, 1);
@@ -95,8 +93,8 @@ const cargarNota = () => {
   contenedor.insertAdjacentHTML("beforeend", cita);
 };
 
-// Al presionar el botón "limpiar" se ejecuta esta función.
-const limpiarDatosNota = () => {
+// Al presionar el botón "limpiar" se limpian todos los campos.
+botonLimpiar.addEventListener("click", () => {
   campo1.value = "";
   campo2.value = "";
   textoArea.value = "";
@@ -106,14 +104,4 @@ const limpiarDatosNota = () => {
   cbox2.value = " ";
   campo2.value = "";
   lista.value = "Toni";
-};
-
-botonLimpiar.addEventListener("click", () => {
-  limpiarDatosNota();
 });
-
-botonNueva.addEventListener("click", () => {
-  nuevaNota();
-});
-
-
