@@ -86,7 +86,7 @@ const cargarNota = () => {
           <p class="parrafo"><strong>Presencial: </strong>${elemento.presencial}</p>
           <p class="parrafo"><strong>Por teléfono: </strong>${elemento.telefono}</p>
           <p class="parrafo"><strong>Nº teléfono: </strong>${elemento.numero}</p>
-          <div class="contenedor__boton">
+          <div class="contenedor__boton">       
             <button onclick="cerrarNota(${index})" class="boton__cerrar">x</button>
           </div>
         </div>`);
